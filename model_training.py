@@ -12,8 +12,8 @@ print("Membaca data training dan testing...")
 # Memuat dataset (path diasumsikan berada di direktori parent)
 # Mendapatkan path absolut dari direktori tempat skrip ini berada
 base_dir = os.path.dirname(os.path.abspath(__file__))
-train_path = os.path.join(base_dir, '../data_dummy_banjir_train.csv')
-test_path = os.path.join(base_dir, '../data_dummy_banjir_test.csv')
+train_path = os.path.join(base_dir, 'dataset/data_dummy_banjir_train.csv')
+test_path = os.path.join(base_dir, 'dataset/data_dummy_banjir_test.csv')
 
 train_df = pd.read_csv(train_path)
 test_df = pd.read_csv(test_path)
