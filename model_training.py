@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split
 import joblib
 import os
 
@@ -12,18 +13,17 @@ print("Membaca data training dan testing...")
 # Memuat dataset (path diasumsikan berada di direktori parent)
 # Mendapatkan path absolut dari direktori tempat skrip ini berada
 base_dir = os.path.dirname(os.path.abspath(__file__))
-train_path = os.path.join(base_dir, 'dataset/data_dummy_banjir_train.csv')
-test_path = os.path.join(base_dir, 'dataset/data_dummy_banjir_test.csv')
+dataset_path = os.path.join(base_dir, 'dataset/data_dummy_banjir_train.csv')
 
-train_df = pd.read_csv(train_path)
-test_df = pd.read_csv(test_path)
+# Membaca full dataset 50,000
+df = pd.read_csv(dataset_path)
 
 # Memisahkan fitur (X) dan target (y)
-X_train = train_df.drop('Label', axis=1)
-y_train_raw = train_df['Label']
+X = df.drop('Label', axis=1)
+y_raw = df['Label']
 
-X_test = test_df.drop('Label', axis=1)
-y_test_raw = test_df['Label']
+# Membagi dataset 80% training, 20% testing
+X_train, X_test, y_train_raw, y_test_raw = train_test_split(X, y_raw, test_size=0.2, random_state=42)
 
 # ---------------------------------------------------------
 # 2. Data Preprocessing
